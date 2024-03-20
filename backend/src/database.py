@@ -1,12 +1,15 @@
-from sqlalchemy import create_engine
+from sqlalchemy import MetaData, NullPool, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@postgresserver/hscroller"
+from backend.config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL
-)
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:postgres@localhost/hscroller"
+
+metadata = MetaData()
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL, poolclass=NullPool)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()

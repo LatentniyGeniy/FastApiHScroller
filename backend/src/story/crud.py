@@ -4,7 +4,7 @@ from backend.src.story import models, schemas
 
 
 def get_story(db: Session, story_id: int):
-    return db.query(models.User).filter(models.Story.id == story_id).first()
+    return db.query(models.Story).filter(models.Story.id == story_id).first()
 
 
 def get_stories(db: Session, skip: int = 0, limit: int = 100):

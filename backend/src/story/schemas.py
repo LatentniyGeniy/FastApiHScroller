@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class StoryBase(BaseModel):
     tale: str
-
+    description: str | None = None
 
 class StoryCreate(StoryBase):
     pass
@@ -11,7 +11,7 @@ class StoryCreate(StoryBase):
 
 class Story(StoryBase):
     id: int
-    description: str | None = None
+    
 
     class Config:
         orm_mode = True
